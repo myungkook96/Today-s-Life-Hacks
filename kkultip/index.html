@@ -1,0 +1,243 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>꿀팁 한 스푼</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;500;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow feed column like a Threads timeline; today's tip is a pinned, larger post up top */
+:root{
+  --bg:#F4F5F2; --surface:#FFFFFF; --ink:#1B1D1A; --muted:#6A6F66; --line:#E2E4DE;
+  --honey:#E3A008; --honey-ink:#7A5200; --honey-soft:#FDF3D6;
+  --display:"Black Han Sans","Gothic A1",system-ui,sans-serif;
+  --body:"Gothic A1","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121411; --surface:#1B1E1A; --ink:#EDEFEA; --muted:#9BA196; --line:#2C302A;
+  --honey:#F2B634; --honey-ink:#F7CD6B; --honey-soft:#2E2610; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121411; --surface:#1B1E1A; --ink:#EDEFEA; --muted:#9BA196; --line:#2C302A;
+  --honey:#F2B634; --honey-ink:#F7CD6B; --honey-soft:#2E2610; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:600px;margin:0 auto;padding-block:8px 64px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px}
+.spoon{width:34px;height:34px;border-radius:50%;background:var(--honey);display:grid;place-items:center;flex:none}
+.spoon svg{width:18px;height:18px}
+.brand h1{font-family:var(--display);font-weight:400;font-size:22px;margin:0;letter-spacing:.01em}
+.today{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+
+.pinned{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 22px 16px}
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--honey-ink)}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--honey)}
+.pinned h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,6vw,34px);line-height:1.25;margin:10px 0 14px;text-wrap:balance}
+.pinned .body{font-size:16px}
+.next{margin-top:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.next b{font-family:var(--mono);font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+
+.chips{display:flex;gap:8px;overflow-x:auto;padding-block:22px 6px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:inherit;font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,.act:focus-visible{outline:2px solid var(--honey);outline-offset:2px}
+
+.feed{display:flex;flex-direction:column}
+.post{display:grid;grid-template-columns:40px 1fr;gap:12px;padding-block:18px;border-bottom:1px solid var(--line)}
+.post .spoon{width:40px;height:40px}
+.post-main{min-width:0}
+.meta{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:14px}
+.meta .name{font-weight:800}
+.meta .no{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.meta .when{margin-left:auto;font-size:13px;color:var(--muted)}
+.tag{display:inline-block;font-size:12px;font-weight:700;color:var(--honey-ink);background:var(--honey-soft);padding:1px 8px;border-radius:6px;margin-top:4px}
+.post h3{font-size:16px;font-weight:800;margin:8px 0 4px;text-wrap:balance}
+.body p{margin:0 0 6px}
+.body ol{margin:4px 0 8px;padding-left:20px}
+.body li{margin-bottom:2px}
+.point{margin-top:8px;padding:10px 12px;border-radius:10px;background:var(--honey-soft);font-size:14px}
+.point b{color:var(--honey-ink)}
+.acts{display:flex;gap:4px;margin-top:10px;margin-left:-8px}
+.act{font:inherit;font-size:13px;color:var(--muted);background:none;border:0;border-radius:8px;padding:6px 8px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.act:hover{background:var(--line);color:var(--ink)}
+.act svg{width:18px;height:18px}
+.act[aria-pressed="true"]{color:var(--honey-ink)}
+.act[aria-pressed="true"] svg path{fill:currentColor}
+.empty{padding:40px 0;text-align:center;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);
+  padding:10px 18px;border-radius:999px;font-size:14px;font-weight:700;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+footer{margin-top:32px;font-size:12px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="spoon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="7.5" rx="5" ry="6" fill="#1B1D1A"/><rect x="11" y="12" width="2" height="10" rx="1" fill="#1B1D1A"/></svg></div>
+      <h1>꿀팁 한 스푼</h1>
+    </div>
+    <div class="today" id="today"></div>
+  </header>
+
+  <section class="pinned" id="pinned" aria-label="오늘의 꿀팁"></section>
+
+  <nav class="chips" id="chips" aria-label="카테고리"></nav>
+  <section class="feed" id="feed" aria-label="지난 꿀팁"></section>
+  <footer>매일 자정(한국 시간)에 새 꿀팁이 하나씩 올라옵니다.</footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const START = Date.UTC(2026, 9, 1); // 2026-10-01 KST가 1호
+const TIPS = [
+ {c:"주방",t:"마늘 껍질, 10초면 술술",b:["통마늘을 전자레인지에 10~15초 돌리세요.","살짝 데워지면 껍질과 알맹이 사이가 벌어져 손으로 쉽게 벗겨집니다."],k:"너무 오래 돌리면 익어버리니 15초를 넘기지 마세요."},
+ {c:"청소",t:"전자레인지 찌든 때, 수증기로 불리기",b:["내열 그릇에 물 한 컵과 식초(또는 레몬 조각)를 넣고 3~5분 돌립니다.","문을 닫은 채 5분 두었다가 마른 행주로 닦으면 쉽게 지워집니다."],k:"꺼낼 때 그릇이 뜨거우니 장갑을 끼세요."},
+ {c:"세탁",t:"흰 옷 누런 얼룩엔 과탄산소다",b:["40~60도 물에 과탄산소다를 녹여 옷을 30분 정도 담급니다.","그다음 평소처럼 세탁기에 돌리면 됩니다."],k:"울·실크 같은 동물성 섬유와 색깔 옷에는 쓰지 마세요."},
+ {c:"절약",t:"멀티탭 스위치 하나로 대기전력 끄기",b:["셋톱박스, 전자레인지, 컴퓨터 주변기기는 꺼져 있어도 전기를 씁니다.","자주 안 쓰는 기기는 스위치형 멀티탭에 모아 두고 외출할 때 한 번에 끄세요."],k:"냉장고처럼 늘 켜 둬야 하는 기기는 따로 꽂으세요."},
+ {c:"디지털",t:"스캐너 없이 문서 스캔하기",b:["아이폰은 메모 앱의 첨부 메뉴에서 '문서 스캔'을, 갤럭시는 카메라를 문서에 비추면 나오는 스캔 버튼을 쓰세요.","기울기와 그림자를 자동으로 보정해 PDF처럼 깔끔하게 저장됩니다."],k:"어두운 바탕 위에 종이를 놓으면 테두리를 더 잘 잡습니다."},
+ {c:"주방",t:"바나나 빨리 갈변하지 않게",b:["송이에서 하나씩 떼어 놓으세요.","꼭지 부분을 랩이나 호일로 감싸면 숙성이 느려집니다."],k:"익은 바나나는 껍질째 냉장하면 속은 며칠 더 갑니다."},
+ {c:"정리",t:"냉장고 반찬통에 날짜 붙이기",b:["마스킹테이프에 만든 날짜를 적어 뚜껑에 붙이세요.","투명 용기를 쓰면 열지 않고도 내용물이 보여 문을 여닫는 시간이 줄어듭니다."],k:"오래된 것을 앞쪽에 두면 버리는 음식이 줄어듭니다."},
+ {c:"청소",t:"배수구 냄새, 베이킹소다와 식초로",b:["배수구에 베이킹소다 반 컵을 붓고 식초 한 컵을 부으세요.","거품이 가라앉은 뒤 10~15분 기다렸다가 뜨거운 물로 씻어 내립니다."],k:"팔팔 끓는 물은 플라스틱 배관을 상하게 할 수 있으니 뜨거운 수돗물 정도면 충분합니다."},
+ {c:"건강",t:"눈이 뻑뻑할 땐 20-20-20",b:["화면을 20분 봤다면, 20피트(약 6m) 떨어진 곳을, 20초 동안 바라보세요.","초점 근육이 쉬면서 눈의 피로가 줄어듭니다."],k:"휴대폰 타이머를 20분 반복으로 맞춰 두면 잊지 않습니다."},
+ {c:"세탁",t:"니트 보풀 덜 생기게 빠는 법",b:["니트는 뒤집어서 세탁망에 넣으세요.","울 코스나 손빨래 코스로 짧게 돌리면 마찰이 줄어 보풀이 덜 생깁니다."],k:"이미 생긴 보풀은 잡아 뜯지 말고 보풀 제거기로 정리하세요."},
+ {c:"주방",t:"계란 신선도, 물 한 컵으로 확인",b:["찬물에 계란을 넣어 보세요.","바닥에 눕듯 가라앉으면 신선하고, 비스듬히 서면 빨리 먹어야 하고, 둥둥 뜨면 오래된 계란입니다."],k:"뜨는 계란은 깨서 냄새를 꼭 확인하세요."},
+ {c:"절약",t:"냉장실은 여유 있게, 냉동실은 꽉 차게",b:["냉장실은 찬 공기가 돌아야 하니 60~70%만 채우세요.","냉동실은 얼어 있는 음식이 서로 냉기를 지켜 주므로 꽉 채우는 편이 효율적입니다."],k:"빈 공간이 많은 냉동실엔 물병을 얼려 채워 두세요."},
+ {c:"디지털",t:"사진 지웠는데 용량이 그대로라면",b:["사진을 지워도 '최근 삭제된 항목'(아이폰)이나 '휴지통'(갤럭시)에 30일간 남아 있습니다.","그 폴더까지 비워야 저장 공간이 실제로 늘어납니다."],k:"비우기 전에 꼭 필요한 사진이 없는지 한 번 훑어보세요."},
+ {c:"청소",t:"욕실 물때엔 구연산 스프레이",b:["물 500ml에 구연산 한 큰술을 녹여 분무기에 담으세요.","샤워 부스나 수전에 뿌리고 10분 뒤 닦으면 하얀 물때가 녹아 나옵니다."],k:"대리석과 락스 근처에는 쓰지 마세요. 산성 세제와 염소계 세제를 섞으면 유독 가스가 나옵니다."},
+ {c:"주방",t:"냉동밥, 갓 지었을 때 싸야 맛있다",b:["밥이 뜨거울 때 한 공기씩 랩이나 용기에 납작하게 담으세요.","김과 수분이 같이 갇혀서 데웠을 때 갓 지은 밥처럼 촉촉합니다."],k:"납작하게 얼리면 전자레인지에서 고르게 데워집니다."},
+ {c:"건강",t:"잠이 안 올 땐 샤워 타이밍부터",b:["자기 1~2시간 전에 미지근하거나 따뜻한 물로 샤워하세요.","올라갔던 체온이 서서히 떨어지면서 잠이 더 잘 옵니다."],k:"자기 직전의 뜨거운 샤워는 오히려 몸을 깨울 수 있습니다."},
+ {c:"정리",t:"안 입는 옷 찾는 옷걸이 뒤집기",b:["옷장의 옷걸이를 모두 반대 방향으로 걸어 두세요.","옷을 입고 다시 걸 때만 원래 방향으로 돌립니다.","6개월 뒤에도 뒤집힌 채인 옷은 정리 후보입니다."],k:"계절 옷은 해당 계절이 지난 뒤에 판단하세요."},
+ {c:"세탁",t:"수건 꿉꿉한 냄새 없애기",b:["섬유유연제는 수건의 흡수력을 떨어뜨리니 줄이거나 빼세요.","헹굼 단계에 식초를 소주잔 한 잔 정도 넣고, 세탁 후 바로 꺼내 완전히 말립니다."],k:"젖은 수건을 빨래 바구니에 오래 두는 게 냄새의 가장 큰 원인입니다."},
+ {c:"절약",t:"짧은 외출엔 보일러 끄지 말기",b:["몇 시간 외출이라면 보일러를 끄기보다 온도를 2~3도 낮추거나 외출 모드를 쓰세요.","식은 바닥을 다시 데우는 데 가스가 더 많이 들 수 있습니다."],k:"며칠 비울 때는 동파 방지를 위해 외출 모드를 유지하세요."},
+ {c:"주방",t:"양파 썰 때 눈물 줄이기",b:["양파를 냉장고에 30분 정도 넣어 두었다가 써세요.","잘 드는 칼을 쓰면 세포가 덜 터져 매운 성분이 덜 나옵니다."],k:"뿌리 쪽을 마지막에 자르면 효과가 더 큽니다."},
+ {c:"디지털",t:"와이파이 비밀번호, QR로 보여주기",b:["갤럭시는 와이파이 설정에서 연결된 네트워크를 누르면 QR 코드가 나옵니다.","아이폰은 '암호' 앱의 Wi-Fi 항목에서 네트워크 QR 코드를 띄울 수 있습니다."],k:"손님은 카메라로 비추기만 하면 바로 연결됩니다."},
+ {c:"청소",t:"창틀 먼지, 나무젓가락 하나면 끝",b:["창틀에 분무기로 물을 살짝 뿌려 먼지를 가라앉히세요.","나무젓가락에 물티슈를 감아 홈을 따라 밀면 구석까지 닦입니다."],k:"마른 먼지를 바로 닦으면 날리기만 하니 꼭 먼저 적시세요."},
+ {c:"주방",t:"나무 도마 냄새엔 굵은 소금과 레몬",b:["도마에 굵은 소금을 뿌리고 반 자른 레몬으로 문지르세요.","5분 뒤 물로 헹구고 세워서 바람이 잘 통하는 곳에 말립니다."],k:"생선·고기용과 채소용 도마를 나누면 냄새가 덜 뱁니다."},
+ {c:"건강",t:"아침 첫 일과는 물 한 컵",b:["자는 동안 호흡과 땀으로 수분이 빠져나갑니다.","일어나자마자 미지근한 물 한 컵을 마시면 몸이 깨는 데 도움이 됩니다."],k:"전날 밤 컵에 물을 받아 침대 옆에 두면 습관 들이기 쉽습니다."},
+ {c:"정리",t:"서랍 속 옷은 세워서 수납",b:["티셔츠를 직사각형으로 접은 뒤 한 번 더 접어 세울 수 있게 만드세요.","책꽂이처럼 세워 넣으면 위에서 모든 옷이 한눈에 보입니다."],k:"아래 옷을 꺼내다 위 옷이 흐트러지는 일이 없어집니다."},
+ {c:"세탁",t:"옷에 튄 기름 얼룩은 주방세제로",b:["얼룩에 주방세제를 한 방울 떨어뜨리고 손가락으로 살살 문지르세요.","10분 정도 두었다가 세탁기에 넣으면 됩니다."],k:"얼룩이 생긴 날 바로 처리할수록 잘 빠집니다."},
+ {c:"절약",t:"창문 뽁뽁이, 물로 붙이세요",b:["창문 유리에 분무기로 물을 뿌리고 에어캡의 볼록한 면을 유리 쪽으로 붙이세요.","테이프 없이 잘 붙고, 봄에 떼어낼 때 자국도 남지 않습니다."],k:"창문 크기보다 조금 작게 잘라야 들뜨지 않습니다."},
+ {c:"주방",t:"감자 싹 늦추는 보관법",b:["감자는 빛이 안 드는 서늘한 곳에 두세요.","사과 한두 개를 같이 넣어 두면 싹이 덜 납니다."],k:"싹이 난 감자는 싹과 초록빛 부분을 넉넉히 도려내고 드세요."},
+ {c:"디지털",t:"복사한 것 여러 개 다시 꺼내기",b:["윈도우에서 Win + V를 누르면 클립보드 기록이 열립니다.","처음엔 '켜기'를 한 번 눌러야 하고, 그다음부터 복사한 항목들을 골라 붙여 넣을 수 있습니다."],k:"자주 쓰는 문구는 고정해 두면 재부팅 후에도 남습니다."},
+ {c:"청소",t:"냄비 탄 자국, 끓여서 불리기",b:["탄 냄비에 물을 붓고 베이킹소다 두세 큰술을 넣어 10분 정도 끓이세요.","식힌 뒤 나무 주걱이나 부드러운 수세미로 밀면 떨어집니다."],k:"코팅 냄비는 쇠수세미를 쓰지 마세요."},
+ {c:"건강",t:"모니터 높이만 바꿔도 목이 편해진다",b:["모니터 화면 윗부분이 눈높이와 비슷하거나 살짝 아래에 오게 맞추세요.","노트북이라면 받침대를 쓰고 키보드는 따로 연결하는 게 좋습니다."],k:"화면과 눈 사이는 팔을 뻗은 거리 정도가 적당합니다."},
+ {c:"주방",t:"대파는 썰어서 얼려 두기",b:["대파를 씻어 물기를 완전히 말린 뒤 송송 썰어 주세요.","키친타월을 깐 용기에 담아 냉동하면 서로 들러붙지 않습니다."],k:"얼린 파는 해동 없이 바로 국이나 볶음에 넣으면 됩니다."},
+ {c:"정리",t:"비닐봉지는 삼각형으로 접기",b:["비닐봉지를 길게 반으로 두 번 접어 띠 모양을 만드세요.","끝에서부터 삼각형으로 접어 올리고 남은 끝을 틈에 끼우면 손바닥보다 작아집니다."],k:"휴지 상자에 넣어 두면 하나씩 꺼내 쓰기 편합니다."},
+ {c:"세탁",t:"롱패딩 집에서 빨기",b:["지퍼를 다 잠그고 뒤집어 중성세제로 울 코스나 약한 코스로 세탁하세요.","완전히 마른 뒤 손으로 두드려 주면 뭉친 충전재가 다시 살아납니다."],k:"세탁 전 라벨에서 물세탁 가능 여부를 먼저 확인하세요."},
+ {c:"절약",t:"장보기 전에 냉장고 사진 한 장",b:["마트 가기 전 냉장고와 냉동실 안을 휴대폰으로 찍어 두세요.","장 보면서 사진을 보면 있는 재료를 또 사는 일이 줄어듭니다."],k:"찍은 김에 유통기한이 임박한 재료로 그날 메뉴를 정해 보세요."},
+ {c:"청소",t:"매트리스 냄새, 베이킹소다로 흡착",b:["매트리스 위에 베이킹소다를 체로 고르게 뿌리세요.","1시간 이상 두었다가 청소기로 꼼꼼히 빨아들입니다."],k:"창문을 열어 환기하면서 하면 효과가 더 좋습니다."},
+ {c:"디지털",t:"긴 화면을 한 장으로 캡처하기",b:["캡처 직후 화면 아래에 뜨는 미리보기 메뉴에서 '스크롤 캡처'(갤럭시)나 '전체 페이지'(아이폰 사파리)를 고르세요.","긴 대화나 웹페이지를 여러 장 나누지 않고 한 번에 저장할 수 있습니다."],k:"아이폰 전체 페이지 캡처는 PDF로 저장됩니다."},
+ {c:"주방",t:"라면 물은 종이컵 세 컵",b:["대부분의 봉지라면은 물 500~550ml를 권장합니다.","일반 종이컵 한 컵이 약 180ml라 세 컵이면 거의 딱 맞습니다."],k:"정확한 양은 봉지 뒷면 조리법을 확인하세요."},
+ {c:"건강",t:"겨울 실내 습도는 40~60%",b:["난방을 하면 실내가 쉽게 건조해집니다.","가습기가 없다면 젖은 수건이나 빨래를 실내에 널어 습도를 올리세요."],k:"습도계 하나 두면 감으로 판단하지 않아도 됩니다."},
+ {c:"정리",t:"엉킨 충전 케이블엔 빵끈",b:["케이블을 둥글게 감아 빵끈이나 집게로 묶어 두세요.","식빵 봉지 집게에 이름을 적어 케이블 끝에 끼우면 어떤 기기용인지 바로 압니다."],k:"책상 모서리에 바인더 클립을 달면 케이블이 바닥으로 떨어지지 않습니다."},
+ {c:"세탁",t:"청바지 색 빠짐 줄이기",b:["청바지는 뒤집어서 찬물에 세탁하세요.","건조기 대신 그늘에 뒤집어 말리면 색과 형태가 오래갑니다."],k:"처음 몇 번은 다른 옷과 따로 빠는 게 안전합니다."},
+ {c:"청소",t:"세탁조 청소는 한 달에 한 번",b:["세탁조에 과탄산소다를 넣고 온수 통세척 코스를 돌리세요.","떠오르는 찌꺼기를 건져 낸 뒤 한 번 더 헹굼만 돌리면 됩니다."],k:"세탁 후 문을 열어 두기만 해도 곰팡이가 훨씬 덜 생깁니다."},
+ {c:"주방",t:"굳은 꿀 되살리기",b:["꿀이 하얗게 굳는 건 상한 게 아니라 결정이 생긴 겁니다.","병째 40~50도 물에 중탕하면 다시 맑게 녹습니다."],k:"전자레인지나 끓는 물은 꿀의 향과 영양을 해칠 수 있습니다."},
+ {c:"절약",t:"통신비, 내가 쓰는 데이터부터 확인",b:["휴대폰 설정에서 지난달 데이터 사용량을 확인하세요.","실제 사용량보다 큰 요금제를 쓰고 있다면 한 단계 낮추거나 알뜰폰 요금제를 비교해 보세요."],k:"집과 회사에서 와이파이를 주로 쓴다면 아낄 여지가 큽니다."},
+ {c:"디지털",t:"중요한 계정엔 2단계 인증",b:["메일, 메신저, 금융 앱의 보안 설정에서 2단계 인증을 켜세요.","비밀번호가 새어 나가도 내 휴대폰 확인 없이는 로그인할 수 없습니다."],k:"메일 계정이 가장 중요합니다. 다른 계정의 비밀번호 재설정이 다 메일로 오기 때문입니다."},
+ {c:"주방",t:"눅눅해진 김 바삭하게",b:["마른 프라이팬을 약불로 데운 뒤 김을 앞뒤로 몇 초씩 구우세요.","남은 김은 밀봉해서 냉동실에 두면 오래 바삭합니다."],k:"기름 바른 조미김은 타기 쉬우니 더 짧게 구우세요."},
+ {c:"청소",t:"거울 얼룩 없이 닦기",b:["극세사 천을 물에 적셔 꼭 짠 뒤 거울을 닦으세요.","바로 마른 극세사 천으로 한 번 더 닦으면 물자국이 남지 않습니다."],k:"동그라미보다 위에서 아래로 'ㄹ'자로 닦으면 얼룩이 덜 남습니다."},
+ {c:"건강",t:"겨울 정전기 덜 겪는 법",b:["손이 건조할수록 정전기가 잘 일어나니 핸드크림을 자주 바르세요.","문손잡이 같은 금속을 잡기 전에 벽이나 나무를 먼저 만지면 따끔함이 줄어듭니다."],k:"실내 습도를 올리는 것도 효과가 큽니다."},
+ {c:"정리",t:"종이 영수증은 찍고 바로 버리기",b:["보관할 영수증과 서류는 받자마자 휴대폰으로 찍으세요.","앨범에 '영수증' 폴더를 만들어 모아 두면 종이 더미가 쌓이지 않습니다."],k:"보증서처럼 원본이 필요한 서류는 따로 파일에 모으세요."},
+ {c:"세탁",t:"운동화는 담갔다가 빨기",b:["미지근한 물에 세제와 베이킹소다를 풀고 운동화를 30분 담급니다.","칫솔로 밑창과 틈을 닦고 헹군 뒤 그늘에서 말리세요."],k:"신문지를 안에 넣어 말리면 모양이 유지되고 빨리 마릅니다."},
+ {c:"주방",t:"냉동 고기는 냉장실에서 해동",b:["먹기 전날 냉동실에서 냉장실로 옮겨 천천히 녹이세요.","급할 땐 밀봉 상태로 찬물에 담그고 30분마다 물을 갈아 주세요."],k:"실온 해동은 겉부터 세균이 늘 수 있어 피하는 게 좋습니다."},
+ {c:"절약",t:"밥솥 보온 대신 소분 냉동",b:["밥솥 보온을 하루 종일 켜 두면 전기도 들고 밥맛도 떨어집니다.","남은 밥은 바로 한 공기씩 냉동하고 먹을 때 데우세요."],k:"한 번에 여러 끼를 지어 두면 시간과 전기를 함께 아낄 수 있습니다."},
+ {c:"디지털",t:"휴대폰 배터리 오래 쓰는 충전 습관",b:["아이폰과 갤럭시 모두 배터리 설정에 충전 한도(80%) 기능이 있습니다.","밤새 충전하는 습관이라면 켜 두는 게 배터리 수명에 유리합니다."],k:"충전하면서 무거운 게임을 하면 열이 나서 배터리가 빨리 닳습니다."},
+ {c:"청소",t:"가스레인지 기름때는 불려서",b:["주방세제를 푼 따뜻한 물에 행주를 적셔 기름때 위에 덮어 두세요.","10~15분 뒤 닦으면 굳은 때가 쉽게 밀립니다. 삼발이는 통째로 담가 불리세요."],k:"불이 완전히 꺼지고 식은 뒤에 청소하세요."},
+ {c:"건강",t:"양치 후엔 가볍게 한 번만 헹구기",b:["치약의 불소는 치아에 남아 있어야 충치 예방 효과가 있습니다.","양치 후 물로 여러 번 세게 헹구기보다 가볍게 한두 번 헹구는 편이 좋습니다."],k:"아이에게는 나이에 맞는 양의 치약을 쓰세요."},
+ {c:"주방",t:"토마토 껍질 쉽게 벗기기",b:["토마토 아래쪽에 열십자로 칼집을 내세요.","끓는 물에 20~30초 담갔다가 찬물에 옮기면 껍질이 저절로 말려 올라갑니다."],k:"소스나 수프를 만들 때 식감이 훨씬 부드러워집니다."},
+ {c:"정리",t:"신발장 냄새엔 말린 커피 찌꺼기",b:["커피 찌꺼기를 넓게 펴서 바짝 말리세요.","다시백이나 종이컵에 담아 신발장 구석에 두면 냄새를 흡수합니다."],k:"덜 마른 찌꺼기는 곰팡이가 생기니 완전히 말려야 합니다."},
+ {c:"세탁",t:"니트는 눕혀서 말리기",b:["물기 먹은 니트를 옷걸이에 걸면 무게 때문에 어깨와 길이가 늘어납니다.","수건으로 눌러 물기를 뺀 뒤 건조대 위에 평평하게 펴서 말리세요."],k:"모양을 손으로 한 번 잡아 주고 말리면 줄어듦도 덜합니다."},
+ {c:"청소",t:"키보드 틈새 먼지 털기",b:["전원을 끄거나 선을 뽑고 키보드를 뒤집어 가볍게 털어 주세요.","남은 먼지는 부드러운 붓이나 마른 칫솔로 키 사이를 쓸어냅니다."],k:"자판 위는 알코올 솜으로 닦으면 손때까지 지워집니다."},
+ {c:"절약",t:"내복 한 벌이 난방비를 줄인다",b:["내복을 입으면 체감 온도가 2~3도 올라간다고 알려져 있습니다.","실내 온도를 1~2도만 낮춰도 겨울 난방비 차이가 꽤 납니다."],k:"얇은 옷을 여러 겹 입으면 사이사이 공기층이 보온을 돕습니다."}
+];
+const CATS=["전체","저장함",...new Set(TIPS.map(t=>t.c))];
+const DAY=864e5;
+const kstNow=()=>Date.now()+9*36e5;
+const todayIdx=()=>Math.floor((kstNow()-START)/DAY);
+const tipFor=n=>TIPS[((n%TIPS.length)+TIPS.length)%TIPS.length];
+const fmtDate=ms=>{const d=new Date(ms);return `${d.getUTCFullYear()}.${String(d.getUTCMonth()+1).padStart(2,"0")}.${String(d.getUTCDate()).padStart(2,"0")}`};
+const dow=ms=>"일월화수목금토"[new Date(ms).getUTCDay()];
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let saved=new Set();try{saved=new Set(JSON.parse(localStorage.getItem("kkultip-saved")||"[]"))}catch(e){}
+const persist=()=>{try{localStorage.setItem("kkultip-saved",JSON.stringify([...saved]))}catch(e){}};
+let cat="전체";
+
+const spoon=`<div class="spoon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="7.5" rx="5" ry="6" fill="#1B1D1A"/><rect x="11" y="12" width="2" height="10" rx="1" fill="#1B1D1A"/></svg></div>`;
+const icBook=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12v18l-6-4-6 4z" fill="none"/></svg>`;
+const icCopy=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>`;
+const icLink=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>`;
+
+function bodyHTML(t){
+  const list=t.b.length>2?`<ol>${t.b.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`:t.b.map(x=>`<p>${esc(x)}</p>`).join("");
+  return `<div class="body">${list}<div class="point"><b>포인트</b> ${esc(t.k)}</div></div>`;
+}
+function acts(n){
+  const on=saved.has(n);
+  return `<div class="acts">
+    <button class="act" data-save="${n}" aria-pressed="${on}">${icBook}${on?"저장됨":"저장"}</button>
+    <button class="act" data-copy="${n}">${icCopy}스레드용 복사</button>
+    <button class="act" data-link="${n}">${icLink}링크</button></div>`;
+}
+function threadsText(n){
+  const t=tipFor(n);
+  return `[꿀팁 No.${n+1}] ${t.t}\n\n${t.b.map((x,i)=>t.b.length>2?`${i+1}. ${x}`:x).join("\n")}\n\n✔ ${t.k}\n\n#생활꿀팁`;
+}
+function whenLabel(n,today){const d=today-n;return d===0?"오늘":d===1?"어제":`${d}일 전`}
+
+function render(){
+  const today=todayIdx();
+  const nowMs=START+today*DAY;
+  document.getElementById("today").innerHTML=`${fmtDate(nowMs)} (${dow(nowMs)})<br>No.${today+1}`;
+  const t=tipFor(today);
+  document.getElementById("pinned").innerHTML=`
+    <div class="eyebrow"><span class="dot"></span>오늘의 꿀팁 · ${esc(t.c)} · No.${today+1}</div>
+    <h2 id="tip-${today+1}">${esc(t.t)}</h2>${bodyHTML(t)}${acts(today)}
+    <div class="next"><span>다음 꿀팁 공개까지</span><b id="countdown"></b></div>`;
+  document.getElementById("chips").innerHTML=CATS.map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${c===cat}">${c}${c==="저장함"&&saved.size?` ${saved.size}`:""}</button>`).join("");
+  const rows=[];
+  for(let n=today-1;n>=0;n--){
+    const p=tipFor(n);
+    if(cat==="저장함"&&!saved.has(n))continue;
+    if(cat!=="전체"&&cat!=="저장함"&&p.c!==cat)continue;
+    rows.push(`<article class="post" id="tip-${n+1}">${spoon}<div class="post-main">
+      <div class="meta"><span class="name">꿀팁 한 스푼</span><span class="no">No.${n+1}</span><span class="when">${whenLabel(n,today)}</span></div>
+      <span class="tag">${esc(p.c)}</span><h3>${esc(p.t)}</h3>${bodyHTML(p)}${acts(n)}</div></article>`);
+  }
+  if(cat==="저장함"&&saved.has(today))rows.unshift(`<p class="empty" style="padding:12px 0">오늘의 꿀팁도 저장해 두셨어요. 위에서 볼 수 있습니다.</p>`);
+  document.getElementById("feed").innerHTML=rows.length?rows.join(""):`<p class="empty">${cat==="저장함"?"아직 저장한 꿀팁이 없어요. 마음에 드는 꿀팁에서 '저장'을 눌러 보세요.":"이 카테고리의 지난 꿀팁이 아직 없어요."}</p>`;
+  tick();
+}
+function tick(){
+  const el=document.getElementById("countdown");if(!el)return;
+  const left=DAY-((kstNow()-START)%DAY);
+  const s=Math.floor(left/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;
+  el.textContent=`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+}
+let lastDay=todayIdx();
+setInterval(()=>{if(todayIdx()!==lastDay){lastDay=todayIdx();render()}else tick()},1000);
+
+const toastEl=document.getElementById("toast");let tt;
+function toast(msg){toastEl.textContent=msg;toastEl.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>toastEl.classList.remove("on"),1800)}
+function copy(text,ok){
+  navigator.clipboard.writeText(text).then(()=>toast(ok)).catch(()=>{
+    const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();
+    try{document.execCommand("copy");toast(ok)}catch(e){toast("복사하지 못했어요. 텍스트를 길게 눌러 복사해 주세요.")}ta.remove();
+  });
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.cat){cat=b.dataset.cat;render();return}
+  if(b.dataset.save){const n=+b.dataset.save;saved.has(n)?(saved.delete(n),toast("저장을 취소했어요")):(saved.add(n),toast("저장함에 담았어요"));persist();render();return}
+  if(b.dataset.copy){copy(threadsText(+b.dataset.copy),"스레드에 붙여 넣을 글을 복사했어요");return}
+  if(b.dataset.link){copy(`#tip-${+b.dataset.link+1}`,"꿀팁 번호 링크를 복사했어요");return}
+});
+render();
+if(location.hash){const el=document.getElementById(location.hash.slice(1));if(el)el.scrollIntoView()}
+</script>
+
+</body></html>
